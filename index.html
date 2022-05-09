@@ -5,18 +5,29 @@
 <title>Piedra-Papel-Tijera</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
 <script type="text/javascript" src="js.js" defer></script>
+<!-- <link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
+
+<script type="text/javascript"
+	src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script> -->
+
+<!--  <link rel="stylesheet" type="text/css" href="dataTables.css">-->
 </head>
 <body>
 	<br>
+	<br>
+	<br>
+	<h2 id="mensajesResultado"></h2>
 	<div id="piedra-papel-tijera">
-		<button type="button" id="empezar-juego">Iniciar juego</button>
-		<br>
+		<button type="button" id="empezar-juego" Style="cursor: pointer;">Iniciar
+			juego</button>
+
 		<div id="img-container">
 			<img src="assets/Piedra.png" id="Piedra" Style="cursor: pointer;">
 			<img src="assets/Papel.png" id="Papel" Style="cursor: pointer;">
 			<img src="assets/Tijera.png" id="Tijera" Style="cursor: pointer;">
 
-			<br> <br>
+			<br> <br> <br> <br>
 			<div id="datos-partida">
 				<h3 class="texto">
 					Cantidad de rondas ganadas: <strong id="rondasGanadas"></strong>
@@ -41,18 +52,19 @@
 				<h4 class="texto">
 					Promedio de puntaje en esta sesión: <strong id="promedioPuntaje"></strong>
 				</h4>
-					<br>
+				<br>
 				<h4 class="texto">
 					Puntaje máximo en esta sesión: <strong id="puntajeMaximo"></strong>
 				</h4>
-				
 			</div>
 		</div>
 	</div>
 	<br>
 	<br>
 	<br>
-	<table id="tabla">
+	<br>
+	<br>
+	<table id="tabla" class="dataTable">
 		<thead>
 			<tr>
 				<th>Resultado</th>
@@ -72,14 +84,17 @@
 	<br>
 	<br>
 	<br>
-	<table id="tablaResumen">
+	<br>
+	<br>
+	<br>
+	<table id="tablaResumen" class="dataTable">
 		<thead>
 			<tr>
 				<th>Partida</th>
-				<th>Ronda </th>
+				<th>Ronda</th>
 				<th>Resultado</th>
 				<th>Elección jugador</th>
-				<th>Elección Máquina</th>
+				<th>Elección máquina</th>
 			</tr>
 		</thead>
 		<tbody id="bodyTablaResumen">

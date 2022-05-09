@@ -16,12 +16,35 @@ let eleccionesDeManoPorPartida = [];
 let puntajeMaximo = 0;
 
 /* TO DO:
-Averiguar como generar un login y una conexión con base de datos en Js, para poder armar una leaderboard y mantener los datos de cada partida realizada por cada usuario.
+Averiguar como generar un login y una conexión con base de datos en Js, para poder armar una leaderboard
+ y mantener los datos de cada partida realizada por cada usuario.
 
- Refactorizar método tablaReportePartidas() y hacer las modificaciones necesarias para que los botones que genere tengan funcionalidad e id único.
- Realizar interfaz gráfica.
-*/
+ Refactorizar método tablaReportePartidas() y hacer las modificaciones necesarias para que los botones que
+genere tengan funcionalidad e id único.
 
+Tener 2 botones en el index, de continuar y abandonar juego, para reemplazar al confirm. Darle display None
+al iniciar la partida y darle display block al finalizarla para poder hacer esta confirmación. Generar un 
+contador que al llegar a 0 elija automáticamente abandonar.
+
+Generar sonidos al presionar botones e iconos.
+
+Averiguar como realizar test unitarios
+
+ Mejorar interfaz gráfica y ver que pasó con el responsive en movile.*/
+
+/*
+window.addEventListener('DOMContentLoaded', function() {
+	$('.dataTable').DataTable({
+		"order": [], language: {
+			url: "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+		}
+	});
+});*/
+
+const mensajesResultado = document.querySelector("#mensajesResultado");
+
+/*document.getElementById("tabla_wrapper").style.display = "none";
+document.getElementById("tablaResumen_wrapper").style.display = "none";*/
 document.getElementById("img-container").style.display = "none";
 document.getElementById("tabla").style.display = "none";
 document.getElementById("tablaResumen").style.display = "none";
@@ -56,6 +79,7 @@ function inicializarValoresDefault() {
 	resultadoDePartida = "";
 	valorMaquina = "";
 	valorElegido = "";
+	mensajesResultado.textContent = "";
 }
 
 const botonIniciar = document.querySelector("#empezar-juego");
@@ -94,7 +118,8 @@ function eleccionMaquina() {
 
 function resultado() {
 	if (valorMaquina === valorElegido) {
-		alert("¡Empate! Ambos tienen " + valorElegido);
+		/*alert("¡Empate! Ambos tienen " + valorElegido);*/
+		mensajesResultado.textContent = "¡Empate! Ambos tienen " + valorElegido + ".";
 		cantidadEmpatadas++;
 		resultadoRonda = "Empate";
 	}
@@ -120,13 +145,17 @@ function condicionDerrota() {
 }
 
 function agregarGanada() {
-	alert("¡Felicidades, has ganado la ronda! Elegiste " + valorElegido + " y la máquina ha elegido " + valorMaquina);
+	/*alert("¡Felicidades, has ganado la ronda! Elegiste " + valorElegido + " y la máquina ha elegido " + valorMaquina);*/
+	mensajesResultado.textContent = "¡Felicidades, has ganado la ronda! Elegiste " + valorElegido + " y la máquina ha elegido "
+		+ valorMaquina + ".";
 	cantidadGanadas++;
 	resultadoRonda = "Victoria";
 }
 
 function agregarPerdida() {
-	alert("¡Que lástima, has perdido la ronda! Elegiste " + valorElegido + " y la máquina ha elegido " + valorMaquina);
+	/*alert("¡Que lástima, has perdido la ronda! Elegiste " + valorElegido + " y la máquina ha elegido " + valorMaquina);*/
+	mensajesResultado.textContent = "¡Que lástima, has perdido la ronda! \n Elegiste " + valorElegido + " y la máquina ha elegido "
+		+ valorMaquina + ".";
 	cantidadPerdidas++;
 	resultadoRonda = "Derrota";
 }
@@ -152,18 +181,19 @@ function generacionResultadoRonda() {
 
 function estadoDePartida() {
 	if (cantidadPerdidas === 3) {
-		generacionDeTablasPuntajesYresultados("derrota", "Has perdido la partida :(. Tu puntuación fue de " + puntuacion + " puntos.");
+		generacionDeTablasPuntajesYresultados("Derrota", "Has perdido la partida :(. Tu puntuación fue de " + puntuacion + " puntos.");
 	} else if (cantidadGanadas === 3) {
-		generacionDeTablasPuntajesYresultados("Victoria", "Has perdido la partida :(. Tu puntuación fue de " + puntuacion + " puntos.");
+		generacionDeTablasPuntajesYresultados("Victoria", "¡Felicidades, has ganado la partida! Tu puntuación fue de " + puntuacion + " puntos.");
 	}
 }
 
 function generacionDeTablasPuntajesYresultados(resultado, mensaje) {
+	mensajesResultado.textContent = mensaje;
 	resultadoDePartida = resultado;
 	tablaReportePartidas();
 	promedioPuntajeSesion();
 	puntajeMasAlto();
-	alert(mensaje);
+	/*alert(mensaje);*/
 	fin();
 }
 
@@ -224,7 +254,6 @@ function tablaReportePartidas() {
 	/*document.querySelector("#footTabla");
 	let $tFootPartidas = document.createElement("td");
 	$tFootPartidas.textContent = "Cantidad de partidas jugadas: " + partidasJugadas;
-
 	let $tFootPromedio = document.createElement("td");
 	$tFootPromedio.textContent = "Cantidad de partidas jugadas: " + promedioPuntuacion;*/
 }
@@ -250,16 +279,10 @@ function tablaReporteRondas() {
 
 	for (let i = 0; i <= resumenPartidasSesionActual.length; i++) {
 		if (resumenPartidasSesionActual[i] !== undefined) {
-			console.log("entro al primer for");
-			console.log("El valor de i es: " + i);
 			for (let j = 0; j <= resumenPartidasSesionActual[i].eleccionesPartida.length; j++) {
-				console.log(resumenPartidasSesionActual[i].eleccionesPartida.length);
-
 				if (resumenPartidasSesionActual[i].eleccionesPartida[j] !== undefined) {
-					console.log("entro al último for");
 
 					const $tabla = document.querySelector("#bodyTablaResumen");
-
 					const $tr = document.createElement("tr");
 
 					let $tdnumeroPartida = document.createElement("td");
@@ -283,8 +306,6 @@ function tablaReporteRondas() {
 					$tr.appendChild($tdEmpate);
 
 					$tabla.appendChild($tr);
-					console.log("El valor de j es: " + j);
-					console.log("creo la tabla");
 				}
 			}
 		}
@@ -316,7 +337,7 @@ function puntajeMasAlto() {
 }
 
 function fin() {
-	let continuar = confirm("Juego terminado ¿Deseas comenzar una nueva partida?");
+	let continuar = confirm("¡¡" + resultadoDePartida + "!! " + "\n Juego terminado ¿Deseas comenzar una nueva partida?");
 	if (continuar) {
 		iniciar();
 	} else {
