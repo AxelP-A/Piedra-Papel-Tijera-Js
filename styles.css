@@ -5,6 +5,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	text-decoration: none;
+	font-family: calibri ,sans-serif;
 }
 
 body {
@@ -112,7 +113,7 @@ tr:nth-child(even) {
 }
 
 th {
-	background-color: #55ff00;
+	background-color: #7fd668;
 	padding: 10px;
 }
 
