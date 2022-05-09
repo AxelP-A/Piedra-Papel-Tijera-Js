@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Piedra-Papel-Tijera</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<script type="text/javascript" src="js.js" defer></script>
+</head>
+<body>
+	<br>
+	<div id="piedra-papel-tijera">
+		<button type="button" id="empezar-juego">Iniciar juego</button>
+		<br>
+		<div id="img-container">
+			<img src="assets/Piedra.png" id="Piedra" Style="cursor: pointer;">
+			<img src="assets/Papel.png" id="Papel" Style="cursor: pointer;">
+			<img src="assets/Tijera.png" id="Tijera" Style="cursor: pointer;">
+
+			<br> <br>
+			<div id="datos-partida">
+				<h3 class="texto">
+					Cantidad de rondas ganadas: <strong id="rondasGanadas"></strong>
+				</h3>
+				<br>
+				<h3 class="texto">
+					Cantidad de rondas empatadas: <strong id="rondasEmpatadas"></strong>
+				</h3>
+				<br>
+				<h3 class="texto">
+					Cantidad de rondas perdidas: <strong id="rondasPerdidas"></strong>
+				</h3>
+				<br>
+				<h2 class="texto">
+					Puntaje total: <strong id="puntaje"></strong>
+				</h2>
+				<br>
+				<h4 class="texto">
+					Partidas jugadas en esta sesión: <strong id="partidasJugadas"></strong>
+				</h4>
+				<br>
+				<h4 class="texto">
+					Promedio de puntaje en esta sesión: <strong id="promedioPuntaje"></strong>
+				</h4>
+					<br>
+				<h4 class="texto">
+					Puntaje máximo en esta sesión: <strong id="puntajeMaximo"></strong>
+				</h4>
+				
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<table id="tabla">
+		<thead>
+			<tr>
+				<th>Resultado</th>
+				<th>Ganadas</th>
+				<th>Empatadas</th>
+				<th>Perdidas</th>
+				<th>Puntaje</th>
+				<th>Resumen rondas</th>
+			</tr>
+		</thead>
+		<tbody id="bodyTabla">
+
+		</tbody>
+		<!--  <tfoot id="tFoot">
+		</tfoot>-->
+	</table>
+	<br>
+	<br>
+	<br>
+	<table id="tablaResumen">
+		<thead>
+			<tr>
+				<th>Partida</th>
+				<th>Ronda </th>
+				<th>Resultado</th>
+				<th>Elección jugador</th>
+				<th>Elección Máquina</th>
+			</tr>
+		</thead>
+		<tbody id="bodyTablaResumen">
+
+		</tbody>
+	</table>
+</body>
+</html>
