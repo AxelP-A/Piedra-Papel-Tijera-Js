@@ -24,13 +24,20 @@ genere tengan funcionalidad e id único.
 
 Tener 2 botones en el index, de continuar y abandonar juego, para reemplazar al confirm. Darle display None
 al iniciar la partida y darle display block al finalizarla para poder hacer esta confirmación. Generar un 
-contador que al llegar a 0 elija automáticamente abandonar.
+contador que al llegar a 0 elija automáticamente abandonar. (Actualmente no se visualiza el mensaje de fin de partida
+ ni el resultado de la última ronda por el confirm).
+
+Averiguar por qué dataTables no reconoce las 2 tablas.
+
+Averiguar como realizar un corte de línea al utilizar los textContent (no funciona con /n ni <br>).
 
 Generar sonidos al presionar botones e iconos.
 
-Averiguar como realizar test unitarios
+Averiguar como realizar test unitarios.
 
- Mejorar interfaz gráfica y ver que pasó con el responsive en movile.*/
+Mejorar interfaz gráfica y ver que pasó con el responsive.*/
+
+
 
 /*
 window.addEventListener('DOMContentLoaded', function() {
