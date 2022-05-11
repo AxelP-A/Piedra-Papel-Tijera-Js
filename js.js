@@ -39,6 +39,36 @@ Mejorar interfaz gráfica y ver que pasó con el responsive.*/
 
 
 
+$(document).on('click', '.boton-tabla', function() {
+	document.querySelectorAll(".boton-tabla").forEach(el => {
+		el.addEventListener("click", e => {
+			const id = e.target.getAttribute("id");
+			tablaReporteRondas(id);
+		});
+	});
+	
+});
+
+
+/* Si tocamos el botón de mostrar resumen, que cambie a botón ocultar resumen, y que ese aplique el método de cambiar rondas
+ y ponga la tabla en display none. 
+ Buscar como limpiar el querySelectorAll*/
+
+/*
+$(".boton-tabla").on('click', firstClick)
+
+function firstClick() {
+    alert("First Clicked");
+    $(".boton-tabla").off('click').on('click', secondClick)
+}
+
+function secondClick() {
+    alert("Second Clicked");
+    $(".boton-tabla").off('click').on('click', firstClick)
+}*/
+
+
+
 /*
 window.addEventListener('DOMContentLoaded', function() {
 	$('.dataTable').DataTable({
@@ -252,12 +282,14 @@ function tablaReportePartidas() {
 			let $botonResumenRonda = document.createElement("td");
 			$botonResumenRonda = document.createElement("button");
 			$botonResumenRonda.innerHTML = "Resumen";
+			$botonResumenRonda.id = i;
+			$botonResumenRonda.className = "boton-tabla";
 			$tr.appendChild($botonResumenRonda);
 
 			$tabla.appendChild($tr);
 		}
 	}
-	tablaReporteRondas();
+	/*tablaReporteRondas();*/
 	/*document.querySelector("#footTabla");
 	let $tFootPartidas = document.createElement("td");
 	$tFootPartidas.textContent = "Cantidad de partidas jugadas: " + partidasJugadas;
@@ -279,6 +311,46 @@ function removerTablaRondas() {
 	}
 }
 
+function tablaReporteRondas(id) {
+
+	removerTablaRondas();
+	document.getElementById("tablaResumen").style.display = "block";
+
+	if (resumenPartidasSesionActual[id] !== undefined) {
+		for (let j = 0; j <= resumenPartidasSesionActual[id].eleccionesPartida.length; j++) {
+			if (resumenPartidasSesionActual[id].eleccionesPartida[j] !== undefined) {
+
+				const $tabla = document.querySelector("#bodyTablaResumen");
+				const $tr = document.createElement("tr");
+
+				let $tdnumeroPartida = document.createElement("td");
+				$tdnumeroPartida.textContent = parseInt(id,10) + 1;
+				$tr.appendChild($tdnumeroPartida);
+
+				let $tdnumeroRonda = document.createElement("td");
+				$tdnumeroRonda.textContent = j + 1;
+				$tr.appendChild($tdnumeroRonda);
+
+				let $tdResultadoRonda = document.createElement("td");
+				$tdResultadoRonda.textContent = resumenPartidasSesionActual[id].eleccionesPartida[j].estado;
+				$tr.appendChild($tdResultadoRonda);
+
+				let $tdGanadas = document.createElement("td");
+				$tdGanadas.textContent = resumenPartidasSesionActual[id].eleccionesPartida[j].eleccionJugador;
+				$tr.appendChild($tdGanadas);
+
+				let $tdEmpate = document.createElement("td");
+				$tdEmpate.textContent = resumenPartidasSesionActual[id].eleccionesPartida[j].eleccionMaquina;
+				$tr.appendChild($tdEmpate);
+
+				$tabla.appendChild($tr);
+			}
+		}
+	}
+}
+
+
+/*
 function tablaReporteRondas() {
 
 	removerTablaRondas();
@@ -318,6 +390,10 @@ function tablaReporteRondas() {
 		}
 	}
 }
+*/
+
+
+
 
 function promedioPuntajeSesion() {
 	promedioPuntuacion = 0;
