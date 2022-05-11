@@ -5,7 +5,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	text-decoration: none;
-	font-family: calibri ,sans-serif;
+	font-family: calibri, sans-serif;
 }
 
 body {
@@ -61,7 +61,13 @@ h1 {
 }
 
 .dataTable button {
-	padding: 5px;
+	padding: 2px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border: 0.01px solid #666666;
+	border-radius: 25px;
+	margin-top: 3px;
+	background-color: #9ec3ff;
 }
 
 .dataTable thead tr {
@@ -150,6 +156,9 @@ tr:hover {
 	}
 	.dataTable button {
 		padding: 0;
+		padding-left: 5px;
+		padding-right: 5px;
+		margin-top: 1px;
 	}
 }
 
@@ -182,5 +191,10 @@ tr:hover {
 	}
 	#img-container img {
 		padding: 0;
+	}
+	@media ( max-width : 450px) {
+		#img-container img {
+			width: 12vh;
+		}
 	}
 }
