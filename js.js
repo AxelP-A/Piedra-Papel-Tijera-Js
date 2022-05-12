@@ -17,10 +17,7 @@ let puntajeMaximo = 0;
 let nombreUsuario = "";
 
 /* TO DO:
--Tener 2 botones en el index, de continuar y abandonar juego, para reemplazar al confirm. Darle display None
-al iniciar la partida y darle display block al finalizarla para poder hacer esta confirmación. Generar un 
-contador que al llegar a 0 elija automáticamente abandonar. (Actualmente no se visualiza el mensaje de fin de partida
- ni el resultado de la última ronda por el confirm).
+- Agregar otro text content para el mensaje del final de la partida, así no pisa al mensaje del resultado de la última ronda.
 
 - Agregar un botón que redirija a las reglas del juego y comente las funcionalidades de la página.
 
@@ -82,7 +79,9 @@ window.addEventListener('DOMContentLoaded', function() {
 	});
 });*/
 
+document.getElementById("continuar-o-abandonar").style.display = "none";
 document.getElementById("empezar-juego").style.display = "none";
+
 
 
 const botonUsuario = document.querySelector("#validar-usuario");
@@ -98,17 +97,11 @@ botonUsuario.addEventListener("click", function() {
 	};
 });
 
-
-
 function validar(usuario) {
 	const regEx = /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.exec(usuario);
 	const valido = !!regEx;
 	return valido;
 }
-
-
-
-
 
 $(document).on('click', '.boton-tabla', function() {
 	document.querySelectorAll(".boton-tabla").forEach(function(botones) {
@@ -122,14 +115,8 @@ $(document).on('click', '.boton-tabla', function() {
 
 function getFocus() {
 	document.getElementById("tablaResumen").focus({ preventScroll: false });
-	/*EL FOCUS NO ESTÁ FUNCIONANDO*/ 
+	/*EL FOCUS NO ESTÁ FUNCIONANDO*/
 }
-
-
-
-
-
-
 
 
 const mensajesResultado = document.querySelector("#mensajesResultado");
@@ -139,10 +126,15 @@ document.getElementById("tablaResumen_wrapper").style.display = "none";*/
 document.getElementById("img-container").style.display = "none";
 document.getElementById("tabla").style.display = "none";
 document.getElementById("tablaResumen").style.display = "none";
+document.getElementById("continuar-o-abandonar").style.display = "none";
+document.getElementById("datos-partida").style.display = "none";
 
 function iniciar() {
 	document.getElementById("empezar-juego").style.display = "none";
+	document.getElementById("continuar-o-abandonar").style.display = "none";
 	document.getElementById("img-container").style.display = "block";
+	document.getElementById("img-aux").style.display = "block";
+	document.getElementById("datos-partida").style.display = "block";
 	mostrarTabla();
 	inicializarValoresDefault();
 	actualizarEstado();
@@ -272,9 +264,9 @@ function generacionResultadoRonda() {
 
 function estadoDePartida() {
 	if (cantidadPerdidas === 3) {
-		generacionDeTablasPuntajesYresultados("Derrota", "Has perdido la partida " + nombreUsuario  + " :(.  Tu puntuación fue de " + puntuacion + " puntos.");
+		generacionDeTablasPuntajesYresultados("Derrota", "Has perdido la partida " + nombreUsuario + " :(.  Tu puntuación fue de " + puntuacion + " puntos.");
 	} else if (cantidadGanadas === 3) {
-		generacionDeTablasPuntajesYresultados("Victoria", "¡Felicidades " + nombreUsuario  + ", has ganado la partida! Tu puntuación fue de " + puntuacion + " puntos.");
+		generacionDeTablasPuntajesYresultados("Victoria", "¡Felicidades " + nombreUsuario + ", has ganado la partida! Tu puntuación fue de " + puntuacion + " puntos.");
 	}
 }
 
@@ -453,13 +445,39 @@ function puntajeMasAlto() {
 	puntajeMaximo = valorMaximo;
 }
 
+
+
+
+
+const botonContinuar = document.querySelector("#comenzar-nueva-partida");
+botonContinuar.addEventListener("click", function() {
+	iniciar();
+});
+
+const botonAbandonar = document.querySelector("#abandonar-partida");
+botonAbandonar.addEventListener("click", function() {
+	document.getElementById("empezar-juego").style.display = "block";
+	document.getElementById("img-aux").style.display = "none";
+	document.getElementById("continuar-o-abandonar").style.display = "none";
+	mostrarTabla()
+});
+
+
+
 function fin() {
-	let continuar = confirm("¡¡" + resultadoDePartida + "!! " + "\n Juego terminado ¿Deseas comenzar una nueva partida?");
+	document.getElementById("continuar-o-abandonar").style.display = "flex";
+	document.getElementById("img-aux").style.display = "none";
+	document.getElementById("datos-partida").style.display = "block";
+
+	mostrarTabla();
+	mensajesResultado.textContent = "¡¡" + resultadoDePartida + "!! " + "\n Juego terminado ¿Deseas comenzar una nueva partida?";
+	/*let continuar = confirm("¡¡" + resultadoDePartida + "!! " + "\n Juego terminado ¿Deseas comenzar una nueva partida?");
 	if (continuar) {
 		iniciar();
 	} else {
 		document.getElementById("empezar-juego").style.display = "block";
 		document.getElementById("img-container").style.display = "none";
+		document.getElementById("continuar-o-abandonar").style.display = "none";
 		mostrarTabla()
-	}
+	}*/
 }

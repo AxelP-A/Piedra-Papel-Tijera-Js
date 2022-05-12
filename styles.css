@@ -28,6 +28,7 @@ h1 {
 	padding: 15px;
 	font-size: x-large;
 	border-radius: 15px;
+	display:block;
 }
 
 #piedra-papel-tijera {
@@ -35,6 +36,7 @@ h1 {
 	justify-content: center;
 	align-items: center;
 	margin-top: 50px;
+	flex-direction: column;
 }
 
 #nombre-usuario {
@@ -53,18 +55,15 @@ h1 {
 }
 
 #nombre-usuario p {
-	padding:5px;
+	padding: 5px;
 	display: block;
 	width: 100%;
 	max-width: 300px;
 }
 
-
 #nombre-usuario button {
 	display: block;
 	max-width: 300px;
-	/*	background: #75b022;
-	background: linear-gradient(to bottom, #75b022 5%, #588a1b 95%);*/
 	background: linear-gradient(to right, #47bfff 5%, #1a44c2 60%);
 	box-shadow: 2px 2px 5px rgb(0 0 0/ 20%);
 	background-position: 25%;
@@ -92,22 +91,55 @@ h1 {
 	border: 1px solid #26282D;
 	outline: none;
 	font-weight: normal;
-	
 }
 
+#continuar-o-abandonar {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+#continuar-o-abandonar button {
+	max-width: 300px;
+	/*background: linear-gradient(to right, #47bfff 5%, #1a44c2 60%);*/
+	box-shadow: 2px 2px 5px rgb(0 0 0/ 20%);
+	background-position: 25%;
+	background-size: 330% 100%;
+	cursor: pointer;
+	color: #c3e1f8;
+	text-shadow: 1px 1px 0px rgb(0 0 0/ 30%);
+	line-height: 30px;
+	padding: 10px 30px;
+	margin: 15px;
+	border-radius: 15px;
+	font-size: x-large;
+}
+
+#comenzar-nueva-partida {
+	background: #75b022;
+	background: linear-gradient(to bottom, #75b022 5%, #588a1b 95%);
+}
+
+#abandonar-partida{
+	background: #ff1c21;
+	background: linear-gradient(to bottom, #ff1c21, #ff4304 95%);
+}
+
+
 #datos-partida {
+	/*display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	width:100%;
+	flex-direction: column;*/
 	background-color: rgba(168, 167, 169, 0.12);
 	padding: 20px;
 	border: 0.01px solid #666666;
 	border-radius: 25px;
 }
 
-/*#img-container {
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-left: 15px;
-	margin-right: 15px;
-}*/
 #img-container img {
 	padding: 7px;
 }
@@ -155,7 +187,6 @@ thead {
 	color: black;
 	/*background-color: rgb(174, 242, 255);*/
 }
-
 
 td, th {
 	border: 1px solid;
@@ -224,7 +255,6 @@ tr:hover {
 	thead {
 		font-size: 12px;
 	}
-	
 	tbody {
 		font-size: 10px;
 	}
@@ -234,7 +264,7 @@ tr:hover {
 	}
 }
 
-@media ( max-width : 460px) {
+@media ( max-width : 480px) {
 	.dataTable thead tr {
 		height: 2px;
 		margin: 0;
