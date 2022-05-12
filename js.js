@@ -14,21 +14,23 @@ let promedioPuntuacion = 0;
 let resultadoRonda;
 let eleccionesDeManoPorPartida = [];
 let puntajeMaximo = 0;
+let nombreUsuario = "";
 
 /* TO DO:
-- Averiguar como generar un login y una conexión con base de datos en Js, para poder armar una leaderboard
- y mantener los datos de cada partida realizada por cada usuario.
-
 -Tener 2 botones en el index, de continuar y abandonar juego, para reemplazar al confirm. Darle display None
 al iniciar la partida y darle display block al finalizarla para poder hacer esta confirmación. Generar un 
 contador que al llegar a 0 elija automáticamente abandonar. (Actualmente no se visualiza el mensaje de fin de partida
  ni el resultado de la última ronda por el confirm).
 
+- Agregar un botón que redirija a las reglas del juego y comente las funcionalidades de la página.
+
 - Cambiar los botones dinámicos por chechbox (con formato toggle bar), y guardar el id del que se activó, desactivar
 cualquier otro que previamente haya estado activado, o ver la posibilidad de retener los id activados y generar la tabla con 
 los datos de todos los checkbox activados.
 
-- Averiguar como realizar un corte de línea al utilizar los textContent (no funciona con /n ni <br>).
+- Averiguar como realizar un corte de línea al utilizar los textContent (no funciona con /n ni <br>) y ver como darle estilos
+para así poder darle un color verde a la victoria y un color rojo a la derrota, y aumentar el tamaño de ese texto, etc. USAR 
+INNERTEXT O INNER HTML.
 
 - Averiguar por qué dataTables no reconoce las 2 tablas.
 
@@ -36,46 +38,12 @@ los datos de todos los checkbox activados.
 
 - Averiguar como realizar test unitarios.
 
-- Mejorar interfaz gráfica y ver que pasó con el responsive.*/
+- Mejorar interfaz gráfica (prioridad: separar los 7 datos mostrados en recuadro) y ver que pasó con el responsive.
 
-
-/*
-$(document).on('click', '.boton-tabla', function() {
-	document.querySelectorAll(".boton-tabla").forEach(el => {
-		el.addEventListener("click", e => {
-			const id = e.target.getAttribute("id");
-			tablaReporteRondas(id);
-		});
-	});
-
-});
+- Averiguar como generar un login y una conexión con base de datos en Js, para poder armar una leaderboard
+ y mantener los datos de cada partida realizada por cada usuario.
 */
 
-$(document).on('click', '.boton-tabla', function() {
-	document.querySelectorAll(".boton-tabla").forEach(function(botones) {
-		botones.addEventListener("click", function(boton) {
-			const id = boton.target.getAttribute("id");
-			tablaReporteRondas(id);
-			getFocus();
-		});
-	});
-});
-
-function getFocus() {
-	document.getElementById("tablaResumen").focus({ preventScroll: false });
-}
-
-
-/*
-document.addEventListener('click', function(){
-	let e=0;
-	
-	if(e.target && e.target.id == e){
-		 
-	}
-e++;
-});
-*/
 
 /* Si tocamos el botón de mostrar resumen, que cambie a botón ocultar resumen, y que ese aplique el método de cambiar rondas
  y ponga la tabla en display none. 
@@ -93,6 +61,17 @@ function secondClick() {
 }*/
 
 
+/*
+$(document).on('click', '.boton-tabla', function() {
+	document.querySelectorAll(".boton-tabla").forEach(el => {
+		el.addEventListener("click", e => {
+			const id = e.target.getAttribute("id");
+			tablaReporteRondas(id);
+		});
+	});
+
+});
+*/
 
 /*
 window.addEventListener('DOMContentLoaded', function() {
@@ -102,6 +81,56 @@ window.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 });*/
+
+document.getElementById("empezar-juego").style.display = "none";
+
+
+const botonUsuario = document.querySelector("#validar-usuario");
+botonUsuario.addEventListener("click", function() {
+	const comprobar_usuario = document.getElementById("usuario").value;
+	if (validar(comprobar_usuario)) {
+		document.getElementById("nombre-usuario").style.display = "none";
+		document.getElementById("empezar-juego").style.display = "block";
+		nombreUsuario = comprobar_usuario;
+		mensajesResultado.textContent = "¡Bienvenido " + nombreUsuario + "!";
+	} else {
+		mensajesResultado.textContent = "El nombre solo debe tener letras y números, y una longitud 4 a 20 caracteres.";
+	};
+});
+
+
+
+function validar(usuario) {
+	const regEx = /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.exec(usuario);
+	const valido = !!regEx;
+	return valido;
+}
+
+
+
+
+
+$(document).on('click', '.boton-tabla', function() {
+	document.querySelectorAll(".boton-tabla").forEach(function(botones) {
+		botones.addEventListener("click", function(boton) {
+			const id = boton.target.getAttribute("id");
+			tablaReporteRondas(id);
+			getFocus();
+		});
+	});
+});
+
+function getFocus() {
+	document.getElementById("tablaResumen").focus({ preventScroll: false });
+	/*EL FOCUS NO ESTÁ FUNCIONANDO*/ 
+}
+
+
+
+
+
+
+
 
 const mensajesResultado = document.querySelector("#mensajesResultado");
 
@@ -169,7 +198,7 @@ botonValorElegido.addEventListener("click", function() {
 	if (cantidadGanadas < 3 && cantidadPerdidas < 3) {
 		eleccionMaquina();
 		resultado();
-		actualizarEstado()
+		actualizarEstado();
 		estadoDePartida();
 	}
 });
@@ -208,7 +237,7 @@ function condicionDerrota() {
 
 function agregarGanada() {
 	/*alert("¡Felicidades, has ganado la ronda! Elegiste " + valorElegido + " y la máquina ha elegido " + valorMaquina);*/
-	mensajesResultado.textContent = "¡Felicidades, has ganado la ronda! Elegiste " + valorElegido + " y la máquina ha elegido "
+	mensajesResultado.textContent = "¡Felicidades " + nombreUsuario + ", has ganado la ronda! Elegiste " + valorElegido + " y la máquina ha elegido "
 		+ valorMaquina + ".";
 	cantidadGanadas++;
 	resultadoRonda = "Victoria";
@@ -216,7 +245,7 @@ function agregarGanada() {
 
 function agregarPerdida() {
 	/*alert("¡Que lástima, has perdido la ronda! Elegiste " + valorElegido + " y la máquina ha elegido " + valorMaquina);*/
-	mensajesResultado.textContent = "¡Que lástima, has perdido la ronda! \n Elegiste " + valorElegido + " y la máquina ha elegido "
+	mensajesResultado.textContent = "¡Que lástima " + nombreUsuario + ", has perdido la ronda! \n Elegiste " + valorElegido + " y la máquina ha elegido "
 		+ valorMaquina + ".";
 	cantidadPerdidas++;
 	resultadoRonda = "Derrota";
@@ -243,9 +272,9 @@ function generacionResultadoRonda() {
 
 function estadoDePartida() {
 	if (cantidadPerdidas === 3) {
-		generacionDeTablasPuntajesYresultados("Derrota", "Has perdido la partida :(. Tu puntuación fue de " + puntuacion + " puntos.");
+		generacionDeTablasPuntajesYresultados("Derrota", "Has perdido la partida " + nombreUsuario  + " :(.  Tu puntuación fue de " + puntuacion + " puntos.");
 	} else if (cantidadGanadas === 3) {
-		generacionDeTablasPuntajesYresultados("Victoria", "¡Felicidades, has ganado la partida! Tu puntuación fue de " + puntuacion + " puntos.");
+		generacionDeTablasPuntajesYresultados("Victoria", "¡Felicidades " + nombreUsuario  + ", has ganado la partida! Tu puntuación fue de " + puntuacion + " puntos.");
 	}
 }
 
@@ -301,27 +330,18 @@ function tablaReportePartidas() {
 			$tdPuntaje.textContent = resumenPartidasSesionActual[i].puntaje;
 			$tr.appendChild($tdPuntaje);
 
-			/*	let $botonResumenRonda = document.createElement("td");
-				$botonResumenRonda.tagName = <button type="button" id="partida + i">Click me</button>
-				$tr.appendChild($botonResumenRonda);*/
 			let $tdbotonResumen = document.createElement("td");
 			$botonResumenRonda = document.createElement("button");
 			$botonResumenRonda.innerHTML = "Resumen";
 			$botonResumenRonda.id = i;
 			$botonResumenRonda.className = "boton-tabla";
-			
+
 			$tdbotonResumen.appendChild($botonResumenRonda);
 			$tr.appendChild($tdbotonResumen);
 
 			$tabla.appendChild($tr);
 		}
 	}
-	/*tablaReporteRondas();*/
-	/*document.querySelector("#footTabla");
-	let $tFootPartidas = document.createElement("td");
-	$tFootPartidas.textContent = "Cantidad de partidas jugadas: " + partidasJugadas;
-	let $tFootPromedio = document.createElement("td");
-	$tFootPromedio.textContent = "Cantidad de partidas jugadas: " + promedioPuntuacion;*/
 }
 
 function removerTablaActual() {
@@ -376,8 +396,7 @@ function tablaReporteRondas(id) {
 	}
 }
 
-
-/*
+/* ESTA VERSIÓN TRAE TODAS LAS PARTIDAS DISPONIBLES AL MISMO TIEMPO:
 function tablaReporteRondas() {
 	removerTablaRondas();
 	document.getElementById("tablaResumen").style.display = "block";
@@ -409,9 +428,6 @@ function tablaReporteRondas() {
 	}
 }
 */
-
-
-
 
 function promedioPuntajeSesion() {
 	promedioPuntuacion = 0;

@@ -34,7 +34,65 @@ h1 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 100px;
+	margin-top: 50px;
+}
+
+#nombre-usuario {
+	margin-top: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	width: 100%;
+	transition: border ease-in-out .5s;
+	outline: none;
+	font-family: "Motiva Sans", Sans-serif;
+	cursor: text;
+	padding: 1px 2px;
+}
+
+#nombre-usuario p {
+	padding:5px;
+	display: block;
+	width: 100%;
+	max-width: 300px;
+}
+
+
+#nombre-usuario button {
+	display: block;
+	max-width: 300px;
+	/*	background: #75b022;
+	background: linear-gradient(to bottom, #75b022 5%, #588a1b 95%);*/
+	background: linear-gradient(to right, #47bfff 5%, #1a44c2 60%);
+	box-shadow: 2px 2px 5px rgb(0 0 0/ 20%);
+	background-position: 25%;
+	background-size: 330% 100%;
+	cursor: pointer;
+	color: #c3e1f8;
+	text-shadow: 1px 1px 0px rgb(0 0 0/ 30%);
+	line-height: 30px;
+	padding: 10px 30px;
+	margin: 15px;
+	border-radius: 15px;
+	font-size: x-large;
+}
+
+#nombre-usuario p input {
+	max-width: 300px;
+	background: #32353C;
+	border-radius: 15px;
+	color: #E9E9E9;
+	padding: 15px 6px;
+	display: block;
+	box-shadow: none;
+	width: 100%;
+	transition: border ease-in-out .5s;
+	border: 1px solid #26282D;
+	outline: none;
+	font-weight: normal;
+	
 }
 
 #datos-partida {
@@ -68,6 +126,7 @@ h1 {
 	border-radius: 25px;
 	margin-top: 3px;
 	background-color: #9ec3ff;
+	cursor: pointer;
 }
 
 .dataTable thead tr {
@@ -97,10 +156,7 @@ thead {
 	/*background-color: rgb(174, 242, 255);*/
 }
 
-/*#tabla, #tablaResumen  button {
-	text-align: center;
-	cursor: pointer;
-}*/
+
 td, th {
 	border: 1px solid;
 	border-color: white;
@@ -148,9 +204,6 @@ tr:hover {
 	thead {
 		font-size: 15px;
 	}
-	td {
-		padding: 0;
-	}
 	th {
 		padding: 5px;
 	}
@@ -162,7 +215,7 @@ tr:hover {
 	}
 }
 
-@media ( max-width : 540px) {
+@media ( max-width : 630px) {
 	.dataTable thead tr {
 		height: 5px;
 		margin: 1px;
@@ -171,9 +224,7 @@ tr:hover {
 	thead {
 		font-size: 12px;
 	}
-	thead {
-		font-size: 10px;
-	}
+	
 	tbody {
 		font-size: 10px;
 	}
@@ -183,7 +234,7 @@ tr:hover {
 	}
 }
 
-@media ( max-width : 450px) {
+@media ( max-width : 460px) {
 	.dataTable thead tr {
 		height: 2px;
 		margin: 0;
