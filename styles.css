@@ -12,10 +12,6 @@ body {
 	background-color: rgb(10, 10, 10);
 	display: flex;
 	flex-direction: column;
-
-	/*height: fit-content;
-		width: 100vw;
-	justify-content: space-between;*/
 }
 
 h1, h2 {
@@ -26,7 +22,6 @@ h1, h2 {
 
 #mensajesResultado, #mensajeDefinicion {
 	background-color: rgba(168, 167, 169, 0.12);
-	/*border: 0.01px solid #666666;*/
 	border-radius: 25px;
 }
 
@@ -118,7 +113,6 @@ h1, h2 {
 
 #continuar-o-abandonar button {
 	max-width: 300px;
-	/*background: linear-gradient(to right, #47bfff 5%, #1a44c2 60%);*/
 	box-shadow: 2px 2px 5px rgb(0 0 0/ 20%);
 	background-position: 25%;
 	background-size: 330% 100%;
@@ -147,11 +141,6 @@ h1, h2 {
 #datos-partida {
 	display: flex;
 	flex-direction: column;
-	/*justify-content: center;
-	align-content: center;
-	align-items: center;
-	width:100%;
-	flex-direction: column;*/
 }
 
 #puntaje-total {
@@ -186,6 +175,10 @@ h1, h2 {
 
 #img-container img {
 	padding: 7px;
+	min-width: auto;
+	min-width: auto;
+	width: 20vw;
+	justify-content: space-evenly;
 }
 
 .texto {
@@ -215,21 +208,12 @@ h1, h2 {
 	text-align: center;
 	margin: auto;
 	background-color: rgb(186, 198, 190);
-
-	/*color: white;*/
-	/*border-color: white;*/
-	/*width: 100%;*/
-	/*background-color: #c2ffa3; */
-	/*display: flex;
-	justify-content: center;
-	align-items: center;*/
 }
 
 thead {
 	font-size: 20px;
 	border: 1px solid;
 	color: black;
-	/*background-color: rgb(174, 242, 255);*/
 }
 
 td, th {
@@ -264,9 +248,23 @@ tr:hover {
 	}
 }
 
-@media ( max-width : 900px) {
+@media ( max-width :780px) {
 	#img-container img {
 		width: 20vh;
+	}
+	#separador-aux {
+		flex-direction: column;
+		justify-content: center;
+		margin-top: 20px;
+		margin-left: 5px;
+		margin-right: 5px;
+		flex-wrap: wrap;
+	}
+	#estado-rondas, #resumen-partidas-sesion {
+		padding-left: 20px;
+		padding-right: 20px;
+		max-width: 100%;
+		margin-top: 20px;
 	}
 }
 
@@ -288,20 +286,6 @@ tr:hover {
 		padding-right: 5px;
 		margin-top: 1px;
 	}
-	#separador-aux {
-		flex-direction: column;
-		justify-content: center;
-		margin-top: 20px;
-		margin-left: 5px;
-		margin-right: 5px;
-		flex-wrap: wrap;
-	}
-	#estado-rondas, #resumen-partidas-sesion {
-	padding-left: 20px;
-	padding-right: 20px;
-	max-width: 100%;
-	margin-top: 20px;
-}
 }
 
 @media ( max-width : 630px) {
@@ -330,10 +314,6 @@ tr:hover {
 	}
 	#img-container img {
 		padding: 0;
-	}
-	@media ( max-width : 450px) {
-		#img-container img {
-			width: 12vh;
-		}
+		width: 12vh;
 	}
 }

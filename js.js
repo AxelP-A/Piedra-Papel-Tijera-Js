@@ -17,10 +17,7 @@ let puntajeMaximo = 0;
 let nombreUsuario = "";
 const mensajesResultado = document.querySelector("#mensajesResultado");
 
-
 /* TO DO:
-- Agregar otro text content para el mensaje del final de la partida, así no pisa al mensaje del resultado de la última ronda.
-
 - Agregar un botón que redirija a las reglas del juego y comente las funcionalidades de la página.
 
 - Cambiar los botones dinámicos por chechbox (con formato toggle bar), y guardar el id del que se activó, desactivar
@@ -37,16 +34,15 @@ INNERTEXT O INNER HTML.
 
 - Averiguar como realizar test unitarios.
 
-- Mejorar interfaz gráfica (prioridad: separar los 7 datos mostrados en recuadro) y ver que pasó con el responsive.
+- Mejorar interfaz gráfica (Prioridad, los recuadros grises) y ver que pasó con el responsive.
 
 - Averiguar como generar un login y una conexión con base de datos en Js, para poder armar una leaderboard
- y mantener los datos de cada partida realizada por cada usuario.
+y mantener los datos de cada partida realizada por cada usuario.
+
+- Si tocamos el botón de mostrar resumen, que cambie a botón ocultar resumen, y que ese aplique el método de cambiar rondas
+y ponga la tabla en display none. 
+Buscar como limpiar el querySelectorAll
 */
-
-
-/* Si tocamos el botón de mostrar resumen, que cambie a botón ocultar resumen, y que ese aplique el método de cambiar rondas
- y ponga la tabla en display none. 
- Buscar como limpiar el querySelectorAll*/
 
 /*
 $(".boton-tabla").on('click', firstClick)
@@ -58,19 +54,6 @@ function secondClick() {
 	alert("Second Clicked");
 	$(".boton-tabla").off('click').on('click', firstClick)
 }*/
-
-
-/*
-$(document).on('click', '.boton-tabla', function() {
-	document.querySelectorAll(".boton-tabla").forEach(el => {
-		el.addEventListener("click", e => {
-			const id = e.target.getAttribute("id");
-			tablaReporteRondas(id);
-		});
-	});
-
-});
-*/
 
 /*
 window.addEventListener('DOMContentLoaded', function() {
@@ -119,9 +102,6 @@ function getFocus() {
 	/*EL FOCUS NO ESTÁ FUNCIONANDO*/
 }
 
-
-/*document.getElementById("tabla_wrapper").style.display = "none";
-document.getElementById("tablaResumen_wrapper").style.display = "none";*/
 document.getElementById("img-container").style.display = "none";
 document.getElementById("tabla").style.display = "none";
 document.getElementById("tablaResumen").style.display = "none";
@@ -142,7 +122,7 @@ function iniciar() {
 
 function actualizarValoresIniciales() {
 	document.querySelector("#partidasJugadas").textContent = partidasJugadas;
-	document.querySelector("#promedioPuntaje").textContent = promedioPuntuacion;
+	document.querySelector("#promedioPuntaje").textContent = promedioPuntuacion.toFixed(2);
 	document.querySelector("#puntajeMaximo").textContent = puntajeMaximo;
 }
 
@@ -435,9 +415,7 @@ function promedioPuntajeSesion() {
 }
 
 function puntajeMasAlto() {
-
 	let valorMaximo = -999;
-
 	for (let i = 0; i <= resumenPartidasSesionActual.length; i++) {
 		if (resumenPartidasSesionActual[i] !== undefined) {
 			if (valorMaximo <= resumenPartidasSesionActual[i].puntaje) {
