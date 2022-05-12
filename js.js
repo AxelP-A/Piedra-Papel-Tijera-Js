@@ -15,6 +15,8 @@ let resultadoRonda;
 let eleccionesDeManoPorPartida = [];
 let puntajeMaximo = 0;
 let nombreUsuario = "";
+const mensajesResultado = document.querySelector("#mensajesResultado");
+
 
 /* TO DO:
 - Agregar otro text content para el mensaje del final de la partida, así no pisa al mensaje del resultado de la última ronda.
@@ -83,7 +85,6 @@ document.getElementById("continuar-o-abandonar").style.display = "none";
 document.getElementById("empezar-juego").style.display = "none";
 
 
-
 const botonUsuario = document.querySelector("#validar-usuario");
 botonUsuario.addEventListener("click", function() {
 	const comprobar_usuario = document.getElementById("usuario").value;
@@ -119,8 +120,6 @@ function getFocus() {
 }
 
 
-const mensajesResultado = document.querySelector("#mensajesResultado");
-
 /*document.getElementById("tabla_wrapper").style.display = "none";
 document.getElementById("tablaResumen_wrapper").style.display = "none";*/
 document.getElementById("img-container").style.display = "none";
@@ -134,7 +133,7 @@ function iniciar() {
 	document.getElementById("continuar-o-abandonar").style.display = "none";
 	document.getElementById("img-container").style.display = "block";
 	document.getElementById("img-aux").style.display = "block";
-	document.getElementById("datos-partida").style.display = "block";
+	document.getElementById("datos-partida").style.display = "flex";
 	mostrarTabla();
 	inicializarValoresDefault();
 	actualizarEstado();
@@ -163,6 +162,8 @@ function inicializarValoresDefault() {
 	valorMaquina = "";
 	valorElegido = "";
 	mensajesResultado.textContent = "";
+	mensajesPartida.textContent = "";
+	mensajeDefinicion.textContent = "";
 }
 
 const botonIniciar = document.querySelector("#empezar-juego");
@@ -262,6 +263,8 @@ function generacionResultadoRonda() {
 	infoRondaActual = [];
 }
 
+const mensajeDefinicion = document.querySelector("#mensajeDefinicion");
+
 function estadoDePartida() {
 	if (cantidadPerdidas === 3) {
 		generacionDeTablasPuntajesYresultados("Derrota", "Has perdido la partida " + nombreUsuario + " :(.  Tu puntuación fue de " + puntuacion + " puntos.");
@@ -271,7 +274,7 @@ function estadoDePartida() {
 }
 
 function generacionDeTablasPuntajesYresultados(resultado, mensaje) {
-	mensajesResultado.textContent = mensaje;
+	mensajeDefinicion.textContent = mensaje;
 	resultadoDePartida = resultado;
 	tablaReportePartidas();
 	promedioPuntajeSesion();
@@ -445,10 +448,6 @@ function puntajeMasAlto() {
 	puntajeMaximo = valorMaximo;
 }
 
-
-
-
-
 const botonContinuar = document.querySelector("#comenzar-nueva-partida");
 botonContinuar.addEventListener("click", function() {
 	iniciar();
@@ -459,18 +458,20 @@ botonAbandonar.addEventListener("click", function() {
 	document.getElementById("empezar-juego").style.display = "block";
 	document.getElementById("img-aux").style.display = "none";
 	document.getElementById("continuar-o-abandonar").style.display = "none";
-	mostrarTabla()
+	mensajesResultado.textContent = "";
+	mensajesPartida.textContent = "";
+	mensajeDefinicion.textContent = "";
+	mostrarTabla();
 });
 
-
+const mensajesPartida = document.querySelector("#mensajesPartida");
 
 function fin() {
 	document.getElementById("continuar-o-abandonar").style.display = "flex";
 	document.getElementById("img-aux").style.display = "none";
-	document.getElementById("datos-partida").style.display = "block";
-
+	document.getElementById("datos-partida").style.display = "flex";
 	mostrarTabla();
-	mensajesResultado.textContent = "¡¡" + resultadoDePartida + "!! " + "\n Juego terminado ¿Deseas comenzar una nueva partida?";
+	mensajesPartida.textContent = "¡¡" + resultadoDePartida + "!! " + " Juego terminado ¿Deseas comenzar una nueva partida?";
 	/*let continuar = confirm("¡¡" + resultadoDePartida + "!! " + "\n Juego terminado ¿Deseas comenzar una nueva partida?");
 	if (continuar) {
 		iniciar();

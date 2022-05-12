@@ -19,10 +19,17 @@
 	<br>
 	<br>
 	<h1 id="mensajesResultado"></h1>
-
+	<br>
+	<br>
+	<h2 id="mensajeDefinicion"></h2>
+	<br>
+	<br>
 	<div id="continuar-o-abandonar">
-		<button id="comenzar-nueva-partida">Continuar</button>
-		<button id="abandonar-partida">Abandonar</button>
+		<h2 id="mensajesPartida"></h2>
+		<div id="botones-continuar-abandonar">
+			<button id="comenzar-nueva-partida">Continuar</button>
+			<button id="abandonar-partida">Abandonar</button>
+		</div>
 	</div>
 	<div id="nombre-usuario">
 		<p>
@@ -47,33 +54,39 @@
 			<br> <br> <br>
 
 			<div id="datos-partida">
-				<h3 class="texto">
-					Cantidad de rondas ganadas: <strong id="rondasGanadas"></strong>
-				</h3>
-				<br>
-				<h3 class="texto">
-					Cantidad de rondas empatadas: <strong id="rondasEmpatadas"></strong>
-				</h3>
-				<br>
-				<h3 class="texto">
-					Cantidad de rondas perdidas: <strong id="rondasPerdidas"></strong>
-				</h3>
-				<br>
-				<h2 class="texto">
-					Puntaje total: <strong id="puntaje"></strong>
-				</h2>
-				<br>
-				<h4 class="texto">
-					Partidas jugadas en esta sesión: <strong id="partidasJugadas"></strong>
-				</h4>
-				<br>
-				<h4 class="texto">
-					Promedio de puntaje en esta sesión: <strong id="promedioPuntaje"></strong>
-				</h4>
-				<br>
-				<h4 class="texto">
-					Puntaje máximo en esta sesión: <strong id="puntajeMaximo"></strong>
-				</h4>
+				<div id="puntaje-total">
+					<h2 class="texto">
+						Puntaje total: <strong id="puntaje"></strong>
+					</h2>
+				</div>
+				<div id="separador-aux">
+					<div id="estado-rondas">
+						<h3 class="texto">
+							Cantidad de rondas ganadas: <strong id="rondasGanadas"></strong>
+						</h3>
+						<br>
+						<h3 class="texto">
+							Cantidad de rondas empatadas: <strong id="rondasEmpatadas"></strong>
+						</h3>
+						<br>
+						<h3 class="texto">
+							Cantidad de rondas perdidas: <strong id="rondasPerdidas"></strong>
+						</h3>
+					</div>
+					<div id="resumen-partidas-sesion">
+						<h3 class="texto">
+							Partidas jugadas en esta sesión: <strong id="partidasJugadas"></strong>
+						</h3>
+						<br>
+						<h3 class="texto">
+							Promedio de puntaje en esta sesión: <strong id="promedioPuntaje"></strong>
+						</h3>
+						<br>
+						<h3 class="texto">
+							Puntaje máximo en esta sesión: <strong id="puntajeMaximo"></strong>
+						</h3>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
