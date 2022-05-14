@@ -20,9 +20,10 @@ h1, h2 {
 	flex-direction: column;
 }
 
-#mensajesResultado, #mensajeDefinicion {
+#mensajesResultado{
 	background-color: rgba(168, 167, 169, 0.12);
 	border-radius: 25px;
+	
 }
 
 #empezar-juego {
