@@ -20,10 +20,11 @@ h1, h2 {
 	flex-direction: column;
 }
 
-#mensajesResultado{
+#mensajesResultado {
 	background-color: rgba(168, 167, 169, 0.12);
 	border-radius: 25px;
-	
+	width: 90%;
+	margin: auto;
 }
 
 #empezar-juego {
@@ -106,6 +107,8 @@ h1, h2 {
 	padding: 20px;
 	border: 0.01px solid #666666;
 	border-radius: 25px;
+	width: 70%;
+	margin: auto;
 }
 
 #botones-continuar-abandonar {
@@ -287,6 +290,9 @@ tr:hover {
 		padding-right: 5px;
 		margin-top: 1px;
 	}
+	#continuar-o-abandonar {
+		width: 100%;
+	}
 }
 
 @media ( max-width : 630px) {
@@ -316,5 +322,13 @@ tr:hover {
 	#img-container img {
 		padding: 0;
 		width: 12vh;
+	}
+	#continuar-o-abandonar button {
+		max-width: 175px;
+		padding: 5px 20px;
+		margin: 5px;
+		font-size: large;
+		margin-top: 20px;
+		max-width: 150px;
 	}
 }

@@ -230,7 +230,6 @@ function actualizarEstado() {
 	document.querySelector("#rondasEmpatadas").textContent = cantidadEmpatadas;
 	puntuacion = cantidadGanadas * 100 - cantidadPerdidas * 25 + cantidadEmpatadas * 5;
 	document.querySelector("#puntaje").textContent = puntuacion;
-
 }
 
 function generacionResultadoRonda() {
